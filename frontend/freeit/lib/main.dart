@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:freeit/pages/classify/classify_view.dart';
+import 'package:freeit/pages/chose_you_want/chose_you_want_view.dart';
+import 'package:freeit/pages/content/markdown_test.dart';
+import 'package:freeit/pages/extras/report_issues_view.dart';
 
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: ChoseWhatYouPreferredPage(),
+      home: MyAppMarkdownTest(),
     );
   }
 }
