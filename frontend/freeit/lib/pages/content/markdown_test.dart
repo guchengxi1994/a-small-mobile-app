@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:freeit/utils/shared_preference_utils.dart';
 
+GlobalKey<_FlutterMarkdownState> globalKey = GlobalKey();
+
 class MyAppMarkdownTest extends StatelessWidget {
   const MyAppMarkdownTest({Key? key}) : super(key: key);
 
@@ -14,8 +16,22 @@ class MyAppMarkdownTest extends StatelessWidget {
         appBar: AppBar(
           title: Text('Flutter Markdown Demo'),
           centerTitle: true,
+          actions: [
+            InkWell(
+              onTap: () async {
+                await globalKey.currentState!.jumpToPosition();
+              },
+              child: Icon(
+                Icons.arrow_downward,
+                color: Colors.black,
+              ),
+              // child: Text("跳转到上次阅读"),
+            ),
+          ],
         ),
-        body: FlutterMarkdown(),
+        body: FlutterMarkdown(
+          key: globalKey,
+        ),
       ),
     );
   }
@@ -35,20 +51,14 @@ class _FlutterMarkdownState extends State<FlutterMarkdown> {
 
   @override
   void dispose() {
-    String key = 'assets/test_markdown/README.md';
-    double val = controller.offset;
-    saveFileReadStatus(key, val).then((value) {
-      controller.dispose();
-      super.dispose();
-    });
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   void initState() {
     _future = readFile();
     super.initState();
-    // jumpToPosition();
-    // controller.addListener(() {});
   }
 
   readFile() async {
@@ -58,28 +68,40 @@ class _FlutterMarkdownState extends State<FlutterMarkdown> {
 
   jumpToPosition() async {
     var val = await getFileReadStatus('assets/test_markdown/README.md');
+    print("============" + val.toString());
     controller.animateTo(val,
         duration: Duration(milliseconds: 100), curve: Curves.bounceIn);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: _future,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return Markdown(
-              data: snapshot.data,
-              controller: controller,
-            );
-          } else {
-            return Center(
-              child: Text("加载中..."),
-            );
-          }
-        },
-      ),
-    );
+    return WillPopScope(
+        child: Container(
+          child: FutureBuilder(
+            future: _future,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Markdown(
+                  data: snapshot.data,
+                  controller: controller,
+                );
+              } else {
+                return Center(
+                  child: Text("加载中..."),
+                );
+              }
+            },
+          ),
+        ),
+        onWillPop: () async {
+          await _onwillpop();
+          return true;
+        });
+  }
+
+  Future _onwillpop() async {
+    String key = 'assets/test_markdown/README.md';
+    double val = controller.offset;
+    saveFileReadStatus(key, val);
   }
 }

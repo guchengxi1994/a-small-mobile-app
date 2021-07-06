@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freeit/pages/chose_you_want/chose_you_want_view.dart';
-import 'package:freeit/pages/content/markdown_test.dart';
-import 'package:freeit/pages/extras/report_issues_view.dart';
+import 'package:freeit/pages/content/content_test.dart';
+import 'package:freeit/pages/content/water_mark_test.dart';
 
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -9,28 +8,30 @@ Future<void> main() async {
   // final mapdata = loadYaml(data);
   // print(mapdata);
 
-  runApp(MyApp());
+  runApp(new MaterialApp(
+    home: ContentTest(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyAppMarkdownTest(),
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         // This is the theme of your application.
+//         //
+//         // Try running your application with "flutter run". You'll see the
+//         // application has a blue toolbar. Then, without quitting the app, try
+//         // changing the primarySwatch below to Colors.green and then invoke
+//         // "hot reload" (press "r" in the console where you ran "flutter run",
+//         // or simply save your changes to "hot reload" in a Flutter IDE).
+//         // Notice that the counter didn't reset back to zero; the application
+//         // is not restarted.
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: MyAppMarkdownTest(),
+//     );
+//   }
+// }
