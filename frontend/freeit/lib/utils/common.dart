@@ -7,6 +7,9 @@ class CommonUtil {
 
   static String appNameZH = '????';
 
+  ///app icon
+  static String appIcon = 'assets/images/icon.png';
+
   /// 获取屏幕大小
   static MediaQueryData mediaQuery = MediaQueryData.fromWindow(_ui.window);
   static double _width = mediaQuery.size.width;

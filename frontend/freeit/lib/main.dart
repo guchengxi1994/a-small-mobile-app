@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freeit/pages/content/content_test.dart';
 import 'package:freeit/pages/content/water_mark_test.dart';
+import 'package:freeit/pages/loginAndRegist/login_view.dart';
+import 'package:freeit/pages/loginAndRegist/register_view.dart';
 
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -9,7 +11,7 @@ Future<void> main() async {
   // print(mapdata);
 
   runApp(new MaterialApp(
-    home: ContentTest(),
+    home: RegisterPage(),
   ));
 }
 

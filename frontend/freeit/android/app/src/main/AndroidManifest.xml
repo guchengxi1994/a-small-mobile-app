@@ -2,7 +2,7 @@
     package="com.xiaoshuyui.freeit">
    <application
         android:label="freeit"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
